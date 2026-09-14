@@ -29,7 +29,3 @@ The objective of this project is to:
 - Power BI
 - Excel
 - GitHub
-
-## Project Status
-
-🚧 In development
