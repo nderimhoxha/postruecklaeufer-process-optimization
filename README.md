@@ -56,3 +56,5 @@ This repository rebuilds that process as a small, from-scratch Python project:
 
 I'm learning Python by building this from scratch, one concept at a time,
 rather than generating it wholesale — the commit history reflects that.
+
+![Current process (AS-IS)](process/as_is.svg)
