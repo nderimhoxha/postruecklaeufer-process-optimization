@@ -2,10 +2,10 @@ import pandas as pd
 import numpy as np
 
 
-LOOKUP_COST_PER_CASE = 7.60       # EUR the bank pays per research, regardless of outcome
+LOOKUP_COST_PER_CASE = 7.60       # EUR paid per address lookup, regardless of outcome
 CLIENT_FEE_ON_SUCCESS = 25.00     # EUR charged to the client, only if a new address is found
 
-ELIGIBLE_RATE = 0.80              # share of incoming letters that pass Girokonto/volljährig/address checks
+ELIGIBLE_RATE = 0.80              # share of incoming letters that pass the eligibility checks
 ERROR_RATE_BEFORE = 0.08          # old process: chance a case's eligibility was mishandled
 ERROR_RATE_AFTER = 0.02           # new process: same mistake, much rarer with the shared database
 RESPONSE_RATE_AFTER = 0.40        # new process only: chance a client responds to the free message
@@ -101,9 +101,16 @@ def run_month(process_function, n_cases):
 
     return results
 
-cases = run_month(process_case_after, 1000)
-print(len(cases))
-print(cases[0])
+before = pd.DataFrame(run_month(process_case_before, 4000))
+before["process"] = "before"
+
+after = pd.DataFrame(run_month(process_case_after, 4000))
+after["process"] = "after"
+
+all_cases = pd.concat([before, after])
+all_cases.to_csv("data/cases.csv", index=False)
+print(all_cases.head())
+print(len(all_cases))
 
 
 
