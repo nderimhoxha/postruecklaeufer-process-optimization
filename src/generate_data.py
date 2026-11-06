@@ -92,7 +92,18 @@ def process_case_after():
         "fee": fee,
     }
 
+def run_month(process_function, n_cases):
+    results = []
 
+    for i in range(n_cases):
+        case = process_function()
+        results.append(case)
+
+    return results
+
+cases = run_month(process_case_after, 1000)
+print(len(cases))
+print(cases[0])
 
 
 
