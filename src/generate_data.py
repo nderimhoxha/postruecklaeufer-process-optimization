@@ -112,6 +112,10 @@ all_cases.to_csv("data/cases.csv", index=False)
 print(all_cases.head())
 print(len(all_cases))
 
+summary = all_cases.groupby("process")[["cost", "fee"]].sum()
+print(summary)
+print(all_cases.groupby("process")["outcome"].value_counts())
+
 
 
      
